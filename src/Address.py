@@ -1,6 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import coloredlogs
 import json
+import logging
+
+
+# Create a top level logging object.
+coloredlogs.install()
+logFormatter = '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 
 class Address(object):
@@ -24,6 +33,7 @@ class Address(object):
         """
         if value is None:
             value = ''
+        logger.info("Setting Name to '{name}'".format(name=value))
         self.__name = value
 
     @name.deleter
@@ -32,6 +42,7 @@ class Address(object):
         Cleanup name
         :return: void
         """
+        logger.debug("Deleting name property.")
         del self.__name
 
     @property
@@ -50,6 +61,7 @@ class Address(object):
         """
         if value is None:
             value = ''
+        logger.info("Setting Street to '{street}'".format(street=value))
         self.__street = value
 
     @street.deleter
@@ -58,6 +70,7 @@ class Address(object):
         Cleanup the street value
         :return: void
         """
+        logger.debug("Deleting street property.")
         del self.__street
 
     @property
@@ -76,6 +89,7 @@ class Address(object):
         """
         if value is None:
             value = ''
+        logger.info("Setting street2 to '{street2}'".format(street2=value))
         self.__street2 = value
 
     @street2.deleter
@@ -84,6 +98,7 @@ class Address(object):
         Cleanup after street 2
         :return: void
         """
+        logger.debug("Deleting street2 property.")
         del self.__street2
 
     @property
@@ -102,6 +117,7 @@ class Address(object):
         """
         if value is None:
             value = ''
+        logger.info("Setting city to '{city}'".format(city=value))
         self.__city = value
 
     @city.deleter
@@ -110,6 +126,7 @@ class Address(object):
         Cleanup city data
         :return: void
         """
+        logger.debug("Deleting city property.")
         del self.__city
 
     @property
@@ -128,6 +145,7 @@ class Address(object):
         """
         if value is None:
             value = ''
+        logger.info("Setting state to '{state}'".format(state=value))
         self.__state = value
 
     @state.deleter
@@ -136,6 +154,7 @@ class Address(object):
         Cleanup state dat
         :return: void
         """
+        logger.debug("Deleting state property.")
         del self.__state
 
     @property
@@ -154,6 +173,7 @@ class Address(object):
         """
         if value is None:
             value = ''
+        logger.info("Setting zip_code to '{zip_code}'".format(zip_code=value))
         self.__zip_code = value
 
     @zip_code.deleter
@@ -162,6 +182,7 @@ class Address(object):
         Cleanup zip code data
         :return: void
         """
+        logger.debug("Deleting zip_code property.")
         del self.__zip_code
 
     def export_json_str(self):
@@ -177,6 +198,8 @@ class Address(object):
             "state": self.state,
             "zip_code": self.zip_code
         }
+        logger.info('Exporting address to JSON object.')
+        logger.debug(output)
         return json.dumps(output)
 
     def import_json_str(self, in_address=None):
@@ -185,6 +208,8 @@ class Address(object):
         :param in_address: String[JSON]
         :return:void
         """
+        logger.info('Importing json string.')
+        logger.debug(in_address)
         temp = json.loads(in_address)
         self.name = temp.get("name", None)
         self.street = temp.get("street", None)
@@ -192,6 +217,7 @@ class Address(object):
         self.city = temp.get("city", None)
         self.state = temp.get("state", None)
         self.zip_code = temp.get("zip_code", None)
+        logger.debug(str(self))
 
     def __repr__(self):
         """
@@ -250,6 +276,7 @@ class Address(object):
         Self cleanup and garbage collection
         :return:
         """
+        logger.debug("Performing address cleanup.")
         del self.name
         del self.street
         del self.street2
@@ -261,6 +288,7 @@ class Address(object):
         """
         Initialization
         """
+        logger.info('Initializing Address')
         self.name = None
         self.street = None
         self.street2 = None
