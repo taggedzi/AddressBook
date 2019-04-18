@@ -6,11 +6,10 @@ import logging
 
 
 # Create a top level logging object.
-coloredlogs.install()
 logFormatter = '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
-logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
-
+coloredlogs.install(level=logging.DEBUG, logger=logger)
+logger.disabled = True
 
 class Address(object):
     """
