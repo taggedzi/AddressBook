@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 coloredlogs.install(level=logging.DEBUG, logger=logger)
 logger.disabled = True
 
+
 class Address(object):
     """
     A simple object used in learning python AND to manage addresses in a USA address format.

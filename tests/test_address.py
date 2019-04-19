@@ -4,7 +4,7 @@ from src.Address import Address
 
 
 def test_init_address_pass():
-    test = Address()
+    Address()
 
 
 def assert_name_value(set_=None, expected=None):
@@ -77,3 +77,39 @@ def test_city_none():
 
 def test_city_value():
     assert_city_value('random_string', 'random_string')
+
+
+def assert_state_value(set_=None, expected=None):
+    test = Address()
+    test.state = set_
+    assert test.state == expected
+
+
+def test_state_empty():
+    assert_state_value(None, '')
+
+
+def test_state_none():
+    assert_state_value('', '')
+
+
+def test_state_value():
+    assert_state_value('random_string', 'random_string')
+
+
+def assert_zip_code_value(set_=None, expected=None):
+    test = Address()
+    test.zip_code = set_
+    assert test.zip_code == expected
+
+
+def test_zip_code_empty():
+    assert_zip_code_value(None, '')
+
+
+def test_zip_code_none():
+    assert_zip_code_value('', '')
+
+
+def test_zip_code_value():
+    assert_zip_code_value('random_string', 'random_string')
