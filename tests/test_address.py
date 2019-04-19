@@ -113,3 +113,76 @@ def test_zip_code_none():
 
 def test_zip_code_value():
     assert_zip_code_value('random_string', 'random_string')
+
+
+def test_export_json_str():
+    test = Address()
+    test.name = "Test"
+    test.street = "Street"
+    test.street2 = "Street2"
+    test.city = "City"
+    test.state = "State"
+    test.zip_code = "Zip_Code"
+    result = test.export_json_str()
+    expected = '{"name": "Test", "street": "Street", "street2": "Street2", "city": "City", "state": "State", ' \
+               '"zip_code": "Zip_Code"}'
+    assert result == expected
+
+
+def test_export_json_str_fail():
+    test = Address()
+    test.name = "Test1"
+    test.street = "Street"
+    test.street2 = "Street2"
+    test.city = "City"
+    test.state = "State"
+    test.zip_code = "Zip_Code"
+    result = test.export_json_str()
+    expected = '{"name": "Test", "street": "Street", "street2": "Street2", "city": "City", "state": "State", ' \
+               '"zip_code": "Zip_Code"}'
+    assert result != expected
+
+
+def test_import_json_str():
+    sample = '{"name": "Test", "street": "Street", "street2": "Street2", "city": "City", "state": "State", ' \
+             '"zip_code": "Zip_Code"}'
+    test = Address()
+    test.import_json_str(sample)
+    expected = Address()
+    expected.name = "Test"
+    expected.street = "Street"
+    expected.street2 = "Street2"
+    expected.city = "City"
+    expected.state = "State"
+    expected.zip_code = "Zip_Code"
+    assert test == expected
+
+
+def test_eq():
+    sample = '{"name": "Test", "street": "Street", "street2": "Street2", "city": "City", "state": "State", ' \
+             '"zip_code": "Zip_Code"}'
+    test = Address()
+    test.import_json_str(sample)
+    expected = Address()
+    expected.name = "Test"
+    expected.street = "Street"
+    expected.street2 = "Street2"
+    expected.city = "City"
+    expected.state = "State"
+    expected.zip_code = "Zip_Code"
+    assert test == expected
+
+
+def test_ne():
+    sample = '{"name": "Test1", "street": "Street", "street2": "Street2", "city": "City", "state": "State", ' \
+             '"zip_code": "Zip_Code"}'
+    test = Address()
+    test.import_json_str(sample)
+    expected = Address()
+    expected.name = "Test"
+    expected.street = "Street"
+    expected.street2 = "Street2"
+    expected.city = "City"
+    expected.state = "State"
+    expected.zip_code = "Zip_Code"
+    assert test != expected

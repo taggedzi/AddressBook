@@ -298,30 +298,4 @@ class Address(object):
 
 
 if __name__ == "__main__":
-    a = Address()
-    a.name = 'Test'
-    a.street = 'Street Rd'
-    a.city = 'City'
-    a.state = 'ST'
-    a.zip_code = '55555'
-
-    b = Address()
-    b.name = 'Aest'
-    b.street = 'Street Rd'
-    b.city = 'City'
-    b.state = 'ST'
-    b.zip_code = '55555'
-
-    print(a)
-    print(b)
-    print(a == b)
-    print(a != b)
-    print(sorted([a, b]))
-    print(a.export_json_str())
-    temp_json = '{"name": "Test", "street": "Street Rd", "street2": "", "city": "City", "state": "ST", ' \
-                '"zip_code": "55555"}'
-    c = Address()
-    c.import_json_str(temp_json)
-    print(c == a)
-
-    # print("This is a library file not intended to be called directly.")
+    print("This is a library file not intended to be called directly.")
